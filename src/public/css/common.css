@@ -52,6 +52,11 @@ img {
     white-space: nowrap;
 }
 
+.header__logo img {
+    height: 36px;
+    width: auto;
+}
+
 .header-nav {
     margin-left: 24px;
 }
