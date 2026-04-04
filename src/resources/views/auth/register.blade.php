@@ -11,7 +11,7 @@
                 <h2 class="register__title">会員登録</h2>
             </div>
 
-            <form class="register-form" action="/register" method="post">
+            <form class="register-form" action="/register" method="post" @submit.prevent novalidate>
                 @csrf
 
                 <div class="register-form__group">
