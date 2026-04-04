@@ -34,6 +34,8 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
+        config(['fortify.home' => '/mypage/profile']);
+
         Fortify::loginView(function () {
             return view('auth.login');
         });
