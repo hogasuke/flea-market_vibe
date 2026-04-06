@@ -18,6 +18,29 @@
                 <img src="{{ asset('images/logo/COACHTECHヘッダーロゴ.png') }}" alt="COARCHTECH">
             </a>
 
+            @guest
+                @if (request()->path() === '/')
+                    <form class="header-search" action="/" method="get">
+                        <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
+                            value="{{ request('keyword') }}">
+                    </form>
+
+                    <nav class="header-nav">
+                        <ul class="header-nav__list">
+                            <li class="header-nav__item">
+                                <a class="header-nav__link" href="/login">ログイン</a>
+                            </li>
+                            <li class="header-nav__item">
+                                <a class="header-nav__link" href="/mypage">マイページ</a>
+                            </li>
+                            <li class="header-nav__item">
+                                <a class="header-nav__sell-link" href="/sell">出品</a>
+                            </li>
+                        </ul>
+                    </nav>
+                @endif
+            @endguest
+
             @auth
                 <nav class="header-nav">
                     <ul class="header-nav__list">
