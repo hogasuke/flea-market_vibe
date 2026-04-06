@@ -113,6 +113,29 @@ img {
     width: 100%;
 }
 
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .header__inner {
+        padding: 16px 32px;
+        gap: 32px;
+    }
+
+    .header__logo img {
+        height: 38px;
+    }
+
+    .header-search {
+        max-width: 500px;
+    }
+
+    .header-search__input {
+        height: 50px;
+    }
+
+    .header-nav__list {
+        gap: 28px;
+    }
+}
+
 @media screen and (max-width: 850px) {
     .header__inner {
         flex-wrap: wrap;

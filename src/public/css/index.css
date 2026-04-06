@@ -48,6 +48,34 @@
     line-height: 1.2;
 }
 
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .item-index {
+        padding-bottom: 96px;
+    }
+
+    .item-index__tabs {
+        gap: 72px;
+        padding: 50px 128px 14px;
+    }
+
+    .item-index__tab {
+        font-size: 36px;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(4, 290px);
+        justify-content: center;
+        gap: 78px 42px;
+        max-width: 1540px;
+        padding: 76px 40px 0;
+    }
+
+    .item-card__name {
+        margin-top: 14px;
+        font-size: 28px;
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .item-grid {
         grid-template-columns: repeat(3, minmax(180px, 1fr));
