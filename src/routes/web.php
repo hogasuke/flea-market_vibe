@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 
-Route::get('/', [ItemController::class,'index']);
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
 Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);

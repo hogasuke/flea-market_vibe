@@ -19,7 +19,7 @@
             </a>
 
             @guest
-                @if (request()->path() === '/')
+                @if (request()->routeIs('items.index', 'items.show'))
                     <form class="header-search" action="/" method="get">
                         <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
                             value="{{ request('keyword') }}">

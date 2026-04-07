@@ -17,10 +17,12 @@
 
         <div class="item-grid">
             @foreach ($items as $item)
-                <article class="item-card">
-                    <div class="item-card__image">商品画像</div>
-                    <p class="item-card__name">{{ $item['name'] }}</p>
-                </article>
+                <a class="item-card" href="{{ route('items.show', $item['id']) }}">
+                    <article>
+                        <div class="item-card__image">商品画像</div>
+                        <p class="item-card__name">{{ $item['name'] }}</p>
+                    </article>
+                </a>
             @endforeach
         </div>
     </div>
