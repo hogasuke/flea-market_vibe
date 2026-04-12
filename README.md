@@ -60,7 +60,7 @@ php artisan db:seed
 
 ## ER図
 
-![alt](erd.png)
+![ER図](src/docs/db/er.svg)
 
 ## URL
 
