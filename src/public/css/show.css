@@ -9,15 +9,17 @@
 }
 
 .item-detail__image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     aspect-ratio: 1 / 1;
     background: #d9d9d9;
-    color: #000000;
-    font-size: clamp(28px, 2.8vw, 36px);
-    font-weight: 700;
+    overflow: hidden;
+}
+
+.item-detail__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .item-detail__content {

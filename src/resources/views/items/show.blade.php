@@ -6,22 +6,24 @@
 
 @section('content')
     <div class="item-detail">
-        <div class="item-detail__image">商品画像</div>
+        <div class="item-detail__image">
+            <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+        </div>
 
         <div class="item-detail__content">
             <section class="item-detail__section item-detail__section--head">
-                <h1 class="item-detail__name">{{ $item['name'] }}</h1>
-                <p class="item-detail__brand">{{ $item['brand'] }}</p>
-                <p class="item-detail__price">¥{{ $item['price'] }}<span>(税込)</span></p>
+                <h1 class="item-detail__name">{{ $item->name }}</h1>
+                <p class="item-detail__brand">{{ $item->brand_name ?: 'ブランド名なし' }}</p>
+                <p class="item-detail__price">¥{{ number_format($item->price) }}<span>(税込)</span></p>
 
                 <div class="item-detail__meta">
                     <div class="item-detail__meta-item">
                         <span class="item-detail__meta-icon">♡</span>
-                        <span class="item-detail__meta-count">{{ $item['likes'] }}</span>
+                        <span class="item-detail__meta-count">{{ $item->likes_count }}</span>
                     </div>
                     <div class="item-detail__meta-item">
                         <span class="item-detail__meta-icon">◯</span>
-                        <span class="item-detail__meta-count">{{ $item['comments'] }}</span>
+                        <span class="item-detail__meta-count">{{ $item->comments_count }}</span>
                     </div>
                 </div>
 
@@ -32,11 +34,7 @@
                 <h2 class="item-detail__heading">商品説明</h2>
 
                 <div class="item-detail__description">
-                    <p>カラー: {{ $item['color'] }}</p>
-
-                    @foreach ($item['description'] as $line)
-                        <p>{{ $line }}</p>
-                    @endforeach
+                    <p>{!! nl2br(e($item->description)) !!}</p>
                 </div>
             </section>
 
@@ -47,29 +45,36 @@
                     <div class="item-detail__info-row">
                         <dt>カテゴリー</dt>
                         <dd>
-                            @foreach ($item['categories'] as $category)
-                                <span class="item-detail__tag">{{ $category }}</span>
-                            @endforeach
+                            @forelse ($item->categories as $category)
+                                <span class="item-detail__tag">{{ $category->name }}</span>
+                            @empty
+                                <span>未設定</span>
+                            @endforelse
                         </dd>
                     </div>
                     <div class="item-detail__info-row">
                         <dt>商品の状態</dt>
-                        <dd>{{ $item['condition'] }}</dd>
+                        <dd>{{ $item->condition }}</dd>
                     </div>
                 </dl>
             </section>
 
             <section class="item-detail__section">
-                <h2 class="item-detail__heading item-detail__heading--comment">コメント({{ $item['comments'] }})</h2>
+                <h2 class="item-detail__heading item-detail__heading--comment">コメント({{ $item->comments_count }})</h2>
 
-                <div class="item-detail__comment-user">
-                    <span class="item-detail__comment-avatar"></span>
-                    <span class="item-detail__comment-name">{{ $item['comment_user'] }}</span>
-                </div>
-
-                <div class="item-detail__comment-body">
-                    {{ $item['comment_body'] }}
-                </div>
+                @forelse ($item->comments as $comment)
+                    <div class="item-detail__comment-user">
+                        <span class="item-detail__comment-avatar"></span>
+                        <span class="item-detail__comment-name">{{ optional($comment->user)->name ?? '退会ユーザー' }}</span>
+                    </div>
+                    <div class="item-detail__comment-body">
+                        {{ $comment->content }}
+                    </div>
+                @empty
+                    <div class="item-detail__comment-body">
+                        コメントはまだありません。
+                    </div>
+                @endforelse
             </section>
 
             <section class="item-detail__section">
