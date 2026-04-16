@@ -8,13 +8,13 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $keyword = request('keyword');
+        $keyword = trim((string) request('keyword'));
 
         $itemsQuery = Item::query()
             ->with('purchases')
             ->latest();
 
-        if ($keyword) {
+        if ($keyword !== '') {
             $itemsQuery->where('name', 'like', '%' . $keyword . '%');
         }
 
