@@ -42,6 +42,13 @@
             @endguest
 
             @auth
+                @if (request()->routeIs('items.index', 'items.show'))
+                    <form class="header-search" action="/" method="get">
+                        <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
+                            value="{{ request('keyword') }}">
+                    </form>
+                @endif
+
                 <nav class="header-nav">
                     <ul class="header-nav__list">
                         <li class="header-nav__item">
@@ -52,6 +59,9 @@
                                 @csrf
                                 <button class="header-nav__button" type="submit">ログアウト</button>
                             </form>
+                        </li>
+                        <li class="header-nav__item">
+                            <a class="header-nav__sell-link" href="/sell">出品</a>
                         </li>
                     </ul>
                 </nav>

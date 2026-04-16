@@ -39,7 +39,7 @@ img {
     margin: 0 auto;
     padding: 18px clamp(20px, 3vw, 40px);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 24px;
 }
@@ -59,7 +59,7 @@ img {
 }
 
 .header-nav {
-    margin-left: 24px;
+    margin-left: auto;
 }
 
 .header-nav__list {
@@ -77,8 +77,14 @@ img {
     font-size: 16px;
     background: transparent;
     border: none;
+    padding: 0;
     cursor: pointer;
     white-space: nowrap;
+    appearance: none;
+}
+
+.header-nav__item form {
+    margin: 0;
 }
 
 .header-nav__sell-link {
@@ -98,6 +104,7 @@ img {
 .header-search {
     flex: 1;
     max-width: 500px;
+    margin-left: clamp(12px, 1.2vw, 20px);
 }
 
 .header-search__input {

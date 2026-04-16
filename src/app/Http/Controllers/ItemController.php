@@ -8,7 +8,21 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::latest()->get();
+        $keyword = request('keyword');
+
+        $itemsQuery = Item::query()
+            ->with('purchases')
+            ->latest();
+
+        if ($keyword) {
+            $itemsQuery->where('name', 'like', '%' . $keyword . '%');
+        }
+
+        if (auth()->check()) {
+            $itemsQuery->where('user_id', '!=', auth()->id());
+        }
+
+        $items = $itemsQuery->get();
 
         return view('items.index', compact('items'));
     }

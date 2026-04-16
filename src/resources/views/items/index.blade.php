@@ -16,6 +16,9 @@
                 <a class="item-card" href="{{ route('items.show', $item->id) }}">
                     <article>
                         <div class="item-card__image">
+                            @if ($item->purchases)
+                                <span class="item-card__sold">Sold</span>
+                            @endif
                             <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
                         </div>
                         <p class="item-card__name">{{ $item->name }}</p>
