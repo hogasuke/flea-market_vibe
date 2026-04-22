@@ -9,6 +9,19 @@ class ItemController extends Controller
     public function index()
     {
         $keyword = trim((string) request('keyword'));
+        $tab = request('tab', 'recommend');
+
+        if ($tab === 'mylist') {
+            $items = auth()->check()
+                ? Item::query()
+                    ->with('purchases')
+                    ->whereHas('likes', fn($q) => $q->where('user_id', auth()->id()))
+                    ->latest()
+                    ->get()
+                : collect();
+
+            return view('items.index', compact('items', 'tab'));
+        }
 
         $itemsQuery = Item::query()
             ->with('purchases')
@@ -24,7 +37,7 @@ class ItemController extends Controller
 
         $items = $itemsQuery->get();
 
-        return view('items.index', compact('items'));
+        return view('items.index', compact('items', 'tab'));
     }
 
     public function show(Item $item)
@@ -37,6 +50,10 @@ class ItemController extends Controller
             'comments',
         ]);
 
-        return view('items.show', compact('item'));
+        $isLiked = auth()->check()
+            ? $item->likes()->where('user_id', auth()->id())->exists()
+            : false;
+
+        return view('items.show', compact('item', 'isLiked'));
     }
 }

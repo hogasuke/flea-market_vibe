@@ -7,8 +7,8 @@
 @section('content')
     <div class="item-index">
         <div class="item-index__tabs">
-            <a class="item-index__tab item-index__tab--active" href="/">おすすめ</a>
-            <span class="item-index__tab">マイリスト</span>
+            <a class="item-index__tab {{ $tab !== 'mylist' ? 'item-index__tab--active' : '' }}" href="/">おすすめ</a>
+            <a class="item-index__tab {{ $tab === 'mylist' ? 'item-index__tab--active' : '' }}" href="{{ route('items.index', ['tab' => 'mylist']) }}">マイリスト</a>
         </div>
 
         <div class="item-grid">

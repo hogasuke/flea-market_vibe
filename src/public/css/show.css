@@ -72,6 +72,22 @@
     line-height: 1;
 }
 
+.item-detail__meta-icon--liked {
+    color: #ff5a5a;
+}
+
+.item-detail__like-form {
+    display: contents;
+}
+
+.item-detail__like-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
 .item-detail__meta-count {
     font-size: 18px;
     font-weight: 700;

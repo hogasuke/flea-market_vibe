@@ -17,10 +17,22 @@
                 <p class="item-detail__price">¥{{ number_format($item->price) }}<span>(税込)</span></p>
 
                 <div class="item-detail__meta">
-                    <div class="item-detail__meta-item">
-                        <span class="item-detail__meta-icon">♡</span>
-                        <span class="item-detail__meta-count">{{ $item->likes_count }}</span>
-                    </div>
+                    @auth
+                        <form action="{{ route('items.like', $item->id) }}" method="POST" class="item-detail__like-form">
+                            @csrf
+                            <button type="submit" class="item-detail__meta-item item-detail__like-button">
+                                <span class="item-detail__meta-icon {{ $isLiked ? 'item-detail__meta-icon--liked' : '' }}">
+                                    {{ $isLiked ? '♥' : '♡' }}
+                                </span>
+                                <span class="item-detail__meta-count">{{ $item->likes_count }}</span>
+                            </button>
+                        </form>
+                    @else
+                        <div class="item-detail__meta-item">
+                            <span class="item-detail__meta-icon">♡</span>
+                            <span class="item-detail__meta-count">{{ $item->likes_count }}</span>
+                        </div>
+                    @endauth
                     <div class="item-detail__meta-item">
                         <span class="item-detail__meta-icon">◯</span>
                         <span class="item-detail__meta-count">{{ $item->comments_count }}</span>
