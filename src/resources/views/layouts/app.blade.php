@@ -42,7 +42,7 @@
             @endguest
 
             @auth
-                @if (request()->routeIs('items.index', 'items.show'))
+                @if (request()->routeIs('items.index', 'items.show', 'mypage.profile'))
                     <form class="header-search" action="/" method="get">
                         <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
                             value="{{ request('keyword') }}">
