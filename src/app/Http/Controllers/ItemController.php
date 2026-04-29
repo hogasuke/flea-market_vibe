@@ -12,13 +12,15 @@ class ItemController extends Controller
         $tab = request('tab', 'recommend');
 
         if ($tab === 'mylist') {
-            $items = auth()->check()
-                ? Item::query()
-                    ->with('purchases')
-                    ->whereHas('likes', fn($q) => $q->where('user_id', auth()->id()))
-                    ->latest()
-                    ->get()
-                : collect();
+            if (!auth()->check()) {
+                return redirect()->route('login');
+            }
+
+            $items = Item::query()
+                ->with('purchases')
+                ->whereHas('likes', fn($q) => $q->where('user_id', auth()->id()))
+                ->latest()
+                ->get();
 
             return view('items.index', compact('items', 'tab'));
         }
