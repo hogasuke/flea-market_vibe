@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             ItemTableSeeder::class,
+            LikeSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }
