@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/items/{item}/like', [LikeController::class, 'toggle'])->name('items.like');
+    Route::post('/items/{item}/comments', [CommentController::class, 'store'])->name('items.comments.store');
     Route::get('/mypage', [AuthController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'show'])->name('mypage.profile');
     Route::post('/mypage/profile', [ProfileController::class, 'update']);

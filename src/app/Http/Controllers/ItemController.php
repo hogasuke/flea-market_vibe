@@ -33,10 +33,6 @@ class ItemController extends Controller
             $itemsQuery->where('name', 'like', '%' . $keyword . '%');
         }
 
-        if (auth()->check()) {
-            $itemsQuery->where('user_id', '!=', auth()->id());
-        }
-
         $items = $itemsQuery->get();
 
         return view('items.index', compact('items', 'tab'));
