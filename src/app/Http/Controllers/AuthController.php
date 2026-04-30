@@ -6,14 +6,25 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 
 class AuthController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('index');
+        $user = Auth::user();
+        $tab = $request->query('tab', 'sell');
+        $soldItems = $user->items;
+        $purchasedItems = $user->purchases()->with('item')->get()->pluck('item');
+        return view('mypage', compact('user', 'soldItems', 'purchasedItems', 'tab'));
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 
     public function showLoginForm()

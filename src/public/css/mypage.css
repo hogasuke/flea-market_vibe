@@ -1,0 +1,54 @@
+.mypage__profile {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 40px clamp(24px, 10vw, 150px);
+}
+
+.mypage__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #d9d9d9;
+    flex-shrink: 0;
+}
+
+.mypage__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mypage__username {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.mypage__edit-button {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    font-size: 16px;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+    .mypage__profile {
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 24px 20px;
+    }
+
+    .mypage__edit-button {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}

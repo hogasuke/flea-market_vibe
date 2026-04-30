@@ -16,6 +16,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
 Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::post('/items/{item}/like', [LikeController::class, 'toggle'])->name('items.like');
