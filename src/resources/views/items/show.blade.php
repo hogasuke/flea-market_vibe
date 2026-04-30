@@ -39,7 +39,11 @@
                     </div>
                 </div>
 
-                <button class="item-detail__purchase-button" type="button">購入手続きへ</button>
+                @auth
+                    <a class="item-detail__purchase-button" href="{{ route('purchase.show', $item->id) }}">購入手続きへ</a>
+                @else
+                    <a class="item-detail__purchase-button" href="{{ route('login') }}">購入手続きへ</a>
+                @endauth
             </section>
 
             <section class="item-detail__section">
