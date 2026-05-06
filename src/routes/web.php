@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 
@@ -20,6 +21,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::get('/purchase/{item}/address', [AddressController::class, 'show'])->name('purchase.address');
+    Route::post('/purchase/{item}/address', [AddressController::class, 'update']);
     Route::post('/items/{item}/like', [LikeController::class, 'toggle'])->name('items.like');
     Route::post('/items/{item}/comments', [CommentController::class, 'store'])->name('items.comments.store');
     Route::get('/mypage', [AuthController::class, 'index']);

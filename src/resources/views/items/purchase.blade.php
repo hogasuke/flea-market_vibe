@@ -33,7 +33,7 @@
             <section class="purchase__section">
                 <div class="purchase__address-header">
                     <h2 class="purchase__section-title">配送先</h2>
-                    <a class="purchase__address-change" href="{{ route('mypage.profile') }}">変更する</a>
+                    <a class="purchase__address-change" href="{{ route('purchase.address', $item) }}">変更する</a>
                 </div>
                 @if ($user->postal_code)
                     <p class="purchase__address-line">〒 {{ $user->postal_code }}</p>
