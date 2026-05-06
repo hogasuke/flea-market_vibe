@@ -23,9 +23,8 @@
                 <h2 class="purchase__section-title">支払い方法</h2>
                 <select class="purchase__select" id="payment_method" name="payment_method">
                     <option value="" disabled selected>選択してください</option>
-                    <option value="クレジットカード">クレジットカード</option>
-                    <option value="コンビニ払い">コンビニ払い</option>
-                    <option value="銀行振込">銀行振込</option>
+                    <option value="コンビニ支払い">コンビニ支払い</option>
+                    <option value="カード支払い">カード支払い</option>
                 </select>
             </section>
 
