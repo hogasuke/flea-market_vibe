@@ -168,6 +168,13 @@
     opacity: 0.9;
 }
 
+.purchase__error {
+    margin: 8px 0 0;
+    color: #ff5555;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 @media screen and (max-width: 1024px) {
     .purchase {
         grid-template-columns: 1fr;

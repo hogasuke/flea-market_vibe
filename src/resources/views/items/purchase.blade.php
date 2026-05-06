@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="purchase">
+    <form class="purchase" action="{{ route('purchase.store', $item) }}" method="post">
+    @csrf
         <div class="purchase__left">
             <div class="purchase__item">
                 <div class="purchase__item-image">
@@ -26,6 +27,9 @@
                     <option value="コンビニ支払い">コンビニ支払い</option>
                     <option value="カード支払い">カード支払い</option>
                 </select>
+                @error('payment_method')
+                    <p class="purchase__error">{{ $message }}</p>
+                @enderror
             </section>
 
             <hr class="purchase__divider">
@@ -62,9 +66,9 @@
                 </table>
             </div>
 
-            <button class="purchase__buy-button" type="button">購入する</button>
+            <button class="purchase__buy-button" type="submit">購入する</button>
         </div>
-    </div>
+    </form>
 
     <script>
         const select = document.getElementById('payment_method');
