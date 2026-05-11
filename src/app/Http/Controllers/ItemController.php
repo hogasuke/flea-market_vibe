@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SellRequest;
+use App\Models\Category;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -36,6 +39,31 @@ class ItemController extends Controller
         $items = $itemsQuery->get();
 
         return view('items.index', compact('items', 'tab'));
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        return view('items.sell', compact('categories'));
+    }
+
+    public function store(SellRequest $request)
+    {
+        $path = $request->file('image')->store('items', 'public');
+
+        $item = Item::create([
+            'user_id'     => Auth::id(),
+            'name'        => $request->name,
+            'brand_name'  => $request->brand_name,
+            'description' => $request->description,
+            'price'       => $request->price,
+            'image_path'  => 'storage/' . $path,
+            'condition'   => $request->condition,
+        ]);
+
+        $item->categories()->attach($request->categories);
+
+        return redirect('/');
     }
 
     public function show(Item $item)

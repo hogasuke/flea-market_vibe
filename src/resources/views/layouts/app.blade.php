@@ -34,7 +34,7 @@
                                 <a class="header-nav__link" href="/login">マイページ</a>
                             </li>
                             <li class="header-nav__item">
-                                <a class="header-nav__sell-link" href="/sell">出品</a>
+                                <a class="header-nav__sell-link" href="{{ route('items.create') }}">出品</a>
                             </li>
                         </ul>
                     </nav>
@@ -61,7 +61,7 @@
                             </form>
                         </li>
                         <li class="header-nav__item">
-                            <a class="header-nav__sell-link" href="/sell">出品</a>
+                            <a class="header-nav__sell-link" href="{{ route('items.create') }}">出品</a>
                         </li>
                     </ul>
                 </nav>

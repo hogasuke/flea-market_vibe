@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'show'])->name('mypage.profile');
     Route::post('/mypage/profile', [ProfileController::class, 'update']);
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
 });
