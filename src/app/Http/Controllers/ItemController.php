@@ -14,23 +14,24 @@ class ItemController extends Controller
         $keyword = trim((string) request('keyword'));
         $tab = request('tab', 'recommend');
 
+        $purchasedItemIds = auth()->check()
+            ? auth()->user()->purchases()->pluck('item_id')->toArray()
+            : [];
+
         if ($tab === 'mylist') {
             if (!auth()->check()) {
                 return redirect()->route('login');
             }
 
             $items = Item::query()
-                ->with('purchases')
                 ->whereHas('likes', fn($q) => $q->where('user_id', auth()->id()))
                 ->latest()
                 ->get();
 
-            return view('items.index', compact('items', 'tab'));
+            return view('items.index', compact('items', 'tab', 'purchasedItemIds'));
         }
 
-        $itemsQuery = Item::query()
-            ->with('purchases')
-            ->latest();
+        $itemsQuery = Item::query()->latest();
 
         if ($keyword !== '') {
             $itemsQuery->where('name', 'like', '%' . $keyword . '%');
@@ -38,7 +39,7 @@ class ItemController extends Controller
 
         $items = $itemsQuery->get();
 
-        return view('items.index', compact('items', 'tab'));
+        return view('items.index', compact('items', 'tab', 'purchasedItemIds'));
     }
 
     public function create()
