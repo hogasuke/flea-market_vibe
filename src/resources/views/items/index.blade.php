@@ -8,7 +8,7 @@
     <div class="item-index">
         <div class="item-index__tabs">
             <a class="item-index__tab {{ $tab !== 'mylist' ? 'item-index__tab--active' : '' }}" href="/">おすすめ</a>
-            <a class="item-index__tab {{ $tab === 'mylist' ? 'item-index__tab--active' : '' }}" href="{{ route('items.index', ['tab' => 'mylist']) }}">マイリスト</a>
+            <a class="item-index__tab {{ $tab === 'mylist' ? 'item-index__tab--active' : '' }}" href="{{ route('items.index', array_filter(['tab' => 'mylist', 'keyword' => request('keyword')])) }}">マイリスト</a>
         </div>
 
         <div class="item-grid">

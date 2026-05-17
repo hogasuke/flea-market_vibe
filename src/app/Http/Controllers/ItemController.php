@@ -25,13 +25,16 @@ class ItemController extends Controller
 
             $items = Item::query()
                 ->whereHas('likes', fn($q) => $q->where('user_id', auth()->id()))
+                ->when($keyword !== '', fn($q) => $q->where('name', 'like', '%' . $keyword . '%'))
                 ->latest()
                 ->get();
 
             return view('items.index', compact('items', 'tab', 'purchasedItemIds'));
         }
 
-        $itemsQuery = Item::query()->latest();
+        $itemsQuery = Item::query()
+            ->when(auth()->check(), fn($q) => $q->where('user_id', '!=', auth()->id()))
+            ->latest();
 
         if ($keyword !== '') {
             $itemsQuery->where('name', 'like', '%' . $keyword . '%');
