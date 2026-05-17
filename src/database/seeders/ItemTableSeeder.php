@@ -18,7 +18,7 @@ class ItemTableSeeder extends Seeder
             [
                 'name'        => '腕時計',
                 'price'       => 15000,
-                'brand_name'  => 'Rolex',
+                'brand_name'  => 'Rolax',
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'image_path'  => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
                 'condition'   => '良好',
@@ -37,7 +37,7 @@ class ItemTableSeeder extends Seeder
                 'name'        => '玉ねぎ3束',
                 'price'       => 300,
                 'brand_name'  => '',
-                'description' => '新鮮な玉ねぎ３束のセット',
+                'description' => '新鮮な玉ねぎ3束のセット',
                 'image_path'  => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
                 'condition'   => 'やや傷や汚れあり',
                 'categories'  => ['食品・飲料・酒'],
@@ -90,7 +90,7 @@ class ItemTableSeeder extends Seeder
             [
                 'name'        => 'コーヒーミル',
                 'price'       => 4000,
-                'brand_name'  => 'Starbucks',
+                'brand_name'  => 'Starbacks',
                 'description' => '手動のコーヒーミル',
                 'image_path'  => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                 'condition'   => '良好',
