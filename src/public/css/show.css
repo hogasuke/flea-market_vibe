@@ -193,6 +193,10 @@
     font-size: 18px;
 }
 
+.item-detail__comment-error {
+    color: #ff0000;
+}
+
 .item-detail__comment-input {
     width: 100%;
     min-height: 246px;
