@@ -15,12 +15,13 @@ class LikeSeeder extends Seeder
         $items = Item::all();
 
         foreach ($users as $user) {
-            $count = rand(0, min(5, $items->count()));
+            $likeableItems = $items->filter(fn($item) => $item->user_id !== $user->id);
+            $count = rand(0, min(5, $likeableItems->count()));
             if ($count === 0) {
                 continue;
             }
 
-            $items->random($count)->each(function ($item) use ($user) {
+            $likeableItems->random($count)->each(function ($item) use ($user) {
                 Like::create([
                     'user_id' => $user->id,
                     'item_id' => $item->id,

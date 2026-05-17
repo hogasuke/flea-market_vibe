@@ -32,5 +32,22 @@ class PurchaseSeeder extends Seeder
             ]);
         }
 
+        // テストユーザーが他ユーザーの出品商品を購入（テストユーザーの購入した商品）
+        $otherUserItems = Item::whereIn('user_id', $otherUsers->pluck('id'))->get();
+        $boughtItems = $otherUserItems->random(min(2, $otherUserItems->count()));
+
+        $buyerIndex = 0;
+        foreach ($boughtItems as $item) {
+            Purchase::create([
+                'user_id'        => $testUser->id,
+                'item_id'        => $item->id,
+                'payment_method' => $paymentMethods[$buyerIndex % 2],
+                'postal_code'    => '200-000' . $buyerIndex,
+                'address'        => '大阪府大阪市' . ($buyerIndex + 1) . '丁目',
+                'building'       => null,
+            ]);
+            $buyerIndex++;
+        }
+
     }
 }

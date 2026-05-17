@@ -12,6 +12,7 @@ class ItemTableSeeder extends Seeder
     public function run(): void
     {
         $testUser = User::where('email', 'test@example.com')->firstOrFail();
+        $otherUsers = User::where('email', '!=', 'test@example.com')->get();
         $cats = Category::all()->keyBy('name');
 
         $items = [
@@ -107,11 +108,16 @@ class ItemTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($items as $data) {
+        $otherUserIndex = 0;
+        foreach ($items as $index => $data) {
             $categoryNames = $data['categories'];
             unset($data['categories']);
 
-            $item = Item::create(array_merge($data, ['user_id' => $testUser->id]));
+            $userId = $index < 5
+                ? $testUser->id
+                : $otherUsers[$otherUserIndex++ % $otherUsers->count()]->id;
+
+            $item = Item::create(array_merge($data, ['user_id' => $userId]));
 
             $categoryIds = $cats->only($categoryNames)->pluck('id')->toArray();
             $item->categories()->attach($categoryIds);

@@ -11,7 +11,7 @@ class CommentSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = app(\Faker\Generator::class);
+        $faker = \Faker\Factory::create('ja_JP');
         $users = User::all();
         $items = Item::all();
 
