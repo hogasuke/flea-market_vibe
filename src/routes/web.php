@@ -22,7 +22,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
-    Route::get('/purchase/{item}/address', [AddressController::class, 'show'])->name('purchase.address');
+Route::get('/purchase/{item}/address', [AddressController::class, 'show'])->name('purchase.address');
     Route::post('/purchase/{item}/address', [AddressController::class, 'update']);
     Route::post('/items/{item}/like', [LikeController::class, 'toggle'])->name('items.like');
     Route::post('/items/{item}/comments', [CommentController::class, 'store'])->name('items.comments.store');

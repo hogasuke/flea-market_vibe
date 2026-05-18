@@ -14,14 +14,17 @@ class AddressController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
-        return view('items.address', compact('item', 'user'));
+        $address = session('purchase_address', [
+            'postal_code' => $user->postal_code,
+            'address'     => $user->address,
+            'building'    => $user->building,
+        ]);
+        return view('items.address', compact('item', 'user', 'address'));
     }
 
     public function update(AddressRequest $request, Item $item): RedirectResponse
     {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->update($request->only(['postal_code', 'address', 'building']));
+        session(['purchase_address' => $request->only(['postal_code', 'address', 'building'])]);
 
         return redirect()->route('purchase.show', $item);
     }

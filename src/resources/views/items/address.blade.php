@@ -17,21 +17,21 @@
                 <div class="address-form__group">
                     <label class="address-form__label" for="postal_code">郵便番号</label>
                     <div class="address-form__input">
-                        <input id="postal_code" type="text" name="postal_code" value="{{ old('postal_code', $user->postal_code) }}">
+                        <input id="postal_code" type="text" name="postal_code" value="{{ old('postal_code', $address['postal_code']) }}">
                     </div>
                 </div>
 
                 <div class="address-form__group">
                     <label class="address-form__label" for="address">住所</label>
                     <div class="address-form__input">
-                        <input id="address" type="text" name="address" value="{{ old('address', $user->address) }}">
+                        <input id="address" type="text" name="address" value="{{ old('address', $address['address']) }}">
                     </div>
                 </div>
 
                 <div class="address-form__group">
                     <label class="address-form__label" for="building">建物名</label>
                     <div class="address-form__input">
-                        <input id="building" type="text" name="building" value="{{ old('building', $user->building) }}">
+                        <input id="building" type="text" name="building" value="{{ old('building', $address['building']) }}">
                     </div>
                 </div>
 

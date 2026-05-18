@@ -39,9 +39,9 @@
                     <h2 class="purchase__section-title">配送先</h2>
                     <a class="purchase__address-change" href="{{ route('purchase.address', $item) }}">変更する</a>
                 </div>
-                @if ($user->postal_code)
-                    <p class="purchase__address-line">〒 {{ $user->postal_code }}</p>
-                    <p class="purchase__address-line">{{ $user->address }}{{ $user->building }}</p>
+                @if ($address['postal_code'])
+                    <p class="purchase__address-line">〒 {{ $address['postal_code'] }}</p>
+                    <p class="purchase__address-line">{{ $address['address'] }}{{ $address['building'] }}</p>
                 @else
                     <p class="purchase__address-line purchase__address-line--empty">住所が登録されていません</p>
                 @endif
